@@ -48,6 +48,7 @@ namespace HW2
             ArrayList inList = new ArrayList();
             ArrayCalc arrayCalc = new ArrayCalc();
             bool over = false;
+            //循环读入
             while (!over)
             {
                 try
