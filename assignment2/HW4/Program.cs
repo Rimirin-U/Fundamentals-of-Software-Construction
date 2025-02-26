@@ -5,7 +5,7 @@ namespace HW4
 {
     class MyIO
     {
-        public int[][] ReadMatrix()
+        public int[,] ReadMatrix()
         {
             //输入矩阵 空格分隔 空行为止
             ArrayList matrix = new ArrayList();
@@ -28,18 +28,24 @@ namespace HW4
                     break;
                 }
             }
-            //待修改：转换为二维数组
+            //检查matrix合法性
             int rows = matrix.Count;
-            int columns = ((int[])matrix[0]).Length;
-            int[][] ret = new int[rows][];
-            for(int i = 0; i < rows; i++)
+            int columns = 0;
+            if (rows == 0) throw new Exception("illegal matrix");
+            for (int i = 0; i < rows; i++)
             {
-                int[] row = new int[columns];
+                if (matrix[i] is not int[] row || row is null || row == Array.Empty<int>() ) throw new Exception("illegal matrix");//向D指导学习了模式匹配
+                else if (i == 0) columns = row.Length;
+                else if (row.Length != columns) throw new Exception("illegal matrix");
+            }
+            //输出二维数组
+            int[,] ret = new int[rows, columns];
+            for (int i = 0; i < rows; i++)
+            {
                 for (int j = 0; j < columns; j++)
                 {
-                    row[j] = ((int[])matrix[i])[j];
+                    if (matrix[i] is int[] row) ret[i, j] = row[j];
                 }
-                ret[i] = row;
             }
             return ret;
         }
@@ -47,12 +53,12 @@ namespace HW4
 
     class Toeplitz
     {
-        public bool IsToeplitz(int[][] matrix)
+        public bool IsToeplitz(int[,] matrix)
         {
             //获取行列数
             int rows, columns;
             rows = matrix.GetLength(0);
-            columns = matrix[0].GetLength(0);
+            columns = matrix.GetLength(1);
             /*
              0 1 2 3
              0 1 2 3
@@ -62,10 +68,10 @@ namespace HW4
             bool ok = true;//是Toeplitz Matrix
             for (int y = rows - 1; y < columns; y++)
             {
-                int num = matrix[0][y];//这一个对角线的值
+                int num = matrix[0, y];//这一个对角线的值
                 for (int x = 1; x < rows; x++)
                 {
-                    if (matrix[x][y - x] != num)//判断对角线是否相等
+                    if (matrix[x, y - x] != num)//判断对角线是否相等
                     {
                         ok = false; break;
                     }
@@ -79,7 +85,7 @@ namespace HW4
     {
         static void Main(string[] args)
         {
-            int[][] matrix;
+            int[,] matrix;
             MyIO myIO = new MyIO();
             Toeplitz check = new Toeplitz();
             //读入矩阵
