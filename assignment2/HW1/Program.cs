@@ -25,6 +25,7 @@ namespace HW1
     //IO
     class MyIO
     {
+        //输入正整数
         public int GetNum()
         {
             int num;
@@ -33,6 +34,7 @@ namespace HW1
                 try
                 {
                     num = Convert.ToInt32(Console.ReadLine());
+                    if (num <= 0) throw new Exception();
                 }
                 catch (Exception)
                 {
