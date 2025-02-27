@@ -8,35 +8,46 @@ namespace HW4
         public int[,] ReadMatrix()
         {
             //输入矩阵 空格分隔 空行为止
+            Console.WriteLine("输入矩阵：空格分隔，每列换行");
             ArrayList matrix = new ArrayList();
             //循环读入
-            bool over = false;
-            while (!over)
+            while (true)
             {
                 try
                 {
                     string? inputRow = Console.ReadLine();//接收输入的一行
                     int[] numOfRow;//一行的数字
-                    if (inputRow is string && inputRow != "") numOfRow =
-                            Array.ConvertAll<string, int>(inputRow.Split(' ', StringSplitOptions.RemoveEmptyEntries), Convert.ToInt32);
-                    else throw new Exception();
+                    //接收一行的数字为int[]
+                    if (inputRow == "" || inputRow is null) break;//空行为止
+                    else numOfRow = Array.ConvertAll<string, int>(
+                                inputRow.Split(' ', StringSplitOptions.RemoveEmptyEntries), Convert.ToInt32);
                     //以空格分割为string[]后转为int[]
                     matrix.Add(numOfRow);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    break;
+                    Console.WriteLine($"{e.Message} This row was ignored.");
                 }
             }
             //检查matrix合法性
             int rows = matrix.Count;
             int columns = 0;
-            if (rows == 0) throw new Exception("illegal matrix");
-            for (int i = 0; i < rows; i++)
+            try
             {
-                if (matrix[i] is not int[] row || row is null || row == Array.Empty<int>() ) throw new Exception("illegal matrix");//向D指导学习了模式匹配
-                else if (i == 0) columns = row.Length;
-                else if (row.Length != columns) throw new Exception("illegal matrix");
+                if (rows == 0) throw new Exception("Illegal matrix: no rows.");
+                for (int i = 0; i < rows; i++)
+                {
+                    if (matrix[i] is not int[] row || row is null || row == Array.Empty<int>())
+                        throw new Exception("Illegal matrix: there is/are empty row(s).");//确保没有空行（真的会有这种情况吗？）
+                                                                                         //——向D指导学习了"模式匹配"
+                    else if (i == 0) columns = row.Length;
+                    else if (row.Length != columns) throw new Exception("Illegal matrix: rows' length not equal.");
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"{e.Message} Please retype.");
+                return ReadMatrix();//?!
             }
             //输出二维数组
             int[,] ret = new int[rows, columns];
