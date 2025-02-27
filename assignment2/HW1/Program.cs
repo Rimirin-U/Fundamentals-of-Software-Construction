@@ -1,34 +1,47 @@
-﻿namespace HW1
+﻿using System.Collections;
+
+namespace HW1
 {
+    //algorithm
     class Calc
     {
-        public int[] GetPrimeFactors(int num, out int factorNum)
+        public int[] GetPrimeFactors(int num)
         {
-            factorNum = 0;//记录质因数个数
-            int[] factors = new int[num];//质因数数组（初始化时比较长）
-            for (int i = 1; i < num; i++)
+            ArrayList factors = new ArrayList();
+            for (int i = 2; i <= num; i++)
             {
-                if (num % i == 0 && IsPrime(i))//是质因数
+                if (num % i == 0)
                 {
-                    factors[factorNum] = i;
-                    factorNum++;
+                    factors.Add(i);
+                    while (num % i == 0) num /= i;//连除法
                 }
             }
-            int[] returnArray = new int[factorNum];
             //构建返回用数组
-            for (int i = 0; i < factorNum; i++) returnArray[i] = factors[i];
-            return returnArray;
+            int[] ret = (int[])factors.ToArray(typeof(int));
+            return ret;
         }
+    }
 
-        private bool IsPrime(int num)
+    //IO
+    class MyIO
+    {
+        public int GetNum()
         {
-            //判断正整数num是否为质数
-            if (num <= 1) return false;
-            for (int i = 2; i < num; i++)
+            int num;
+            while (true)
             {
-                if (num % i == 0) return false;
+                try
+                {
+                    num = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("illegal input");
+                    continue;
+                }
+                break;
             }
-            return true;
+            return num;
         }
     }
     internal class Program
@@ -36,14 +49,14 @@
         static void Main(string[] args)
         {
             Calc calc = new Calc();
-            int num = Convert.ToInt32(Console.ReadLine());
-            int factorNum;
+            MyIO myIO = new MyIO();
+            int num = myIO.GetNum();
             //计算
-            int[] primeFactors = calc.GetPrimeFactors(num,out factorNum);
+            int[] primeFactors = calc.GetPrimeFactors(num);
             //输出
-            for(int i = 0; i < factorNum; i++)
+            foreach (int i in primeFactors)
             {
-                Console.Write($"{primeFactors[i]} ");
+                Console.Write($"{i} ");
             }
         }
     }
