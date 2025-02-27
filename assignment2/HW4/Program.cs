@@ -29,6 +29,7 @@ namespace HW4
                     Console.WriteLine($"{e.Message} This row was ignored.");
                 }
             }
+
             //检查matrix合法性
             int rows = matrix.Count;
             int columns = 0;
@@ -49,6 +50,7 @@ namespace HW4
                 Console.WriteLine($"{e.Message} Please retype.");
                 return ReadMatrix();//?!
             }
+
             //输出二维数组
             int[,] ret = new int[rows, columns];
             for (int i = 0; i < rows; i++)
