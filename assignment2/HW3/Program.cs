@@ -8,8 +8,11 @@ namespace HW3
         {
             bool[] allNum = new bool[n + 1];//n+1个标识位，i为素数时allNum[i]==false
             allNum[0] = true; allNum[1] = true;//0和1不是素数
-            for (int filter = 2; filter <= n / 2; filter++)
+
+            for (int filter = 2; filter * 2 <= n; filter++)
             {
+                if (allNum[filter]) continue;//filter只能为素数
+                //筛
                 int notPrime = filter * 2;
                 while (notPrime <= n)
                 {
@@ -30,9 +33,9 @@ namespace HW3
         static void Main(string[] args)
         {
             PrimeCalc primeCalc = new PrimeCalc();
-            int[] primes = primeCalc.Calc(100);
+            int[] primes = primeCalc.Calc(169);
             int length = primes.Length;
-            for(int i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
                 Console.Write($"{primes[i]} ");
             }
