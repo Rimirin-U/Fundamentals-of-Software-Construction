@@ -34,10 +34,9 @@ namespace HW3
         {
             PrimeCalc primeCalc = new PrimeCalc();
             int[] primes = primeCalc.Calc(169);
-            int length = primes.Length;
-            for (int i = 0; i < length; i++)
+            foreach (int i in primes)
             {
-                Console.Write($"{primes[i]} ");
+                Console.Write($"{i} ");
             }
         }
     }
