@@ -40,12 +40,12 @@ namespace HW4
                 {
                     if (matrix[i] is not int[] row || row is null || row == Array.Empty<int>())
                         throw new Exception("Illegal matrix: there is/are empty row(s).");//确保没有空行（真的会有这种情况吗？）
-                                                                                         //——向D指导学习了"模式匹配"
+                                                                                          //——向D指导学习了"模式匹配"
                     else if (i == 0) columns = row.Length;
                     else if (row.Length != columns) throw new Exception("Illegal matrix: rows' length not equal.");
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine($"{e.Message} Please retype.");
                 return ReadMatrix();//?!
@@ -72,21 +72,27 @@ namespace HW4
             int rows, columns;
             rows = matrix.GetLength(0);
             columns = matrix.GetLength(1);
-            /*
-             0 1 2 3
-             0 1 2 3
-             0 1 2 3
+            /* 矩阵示例：（三行四列）
+             * * 0 1 2 3 * *
+             * * 0 1 2 3 * *
+             * * 0 1 2 3 * *
+             matrix[x][y] for 第x行第y列
             */
-            //matrix[x][y]
-            bool ok = true;//是Toeplitz Matrix
-            for (int y = rows - 1; y < columns; y++)
+
+            //检验
+            bool ok = true;//矩阵合法
+            for (int y = 1 - rows; y < columns; y++)//遍历每条对角线 y为该对角线起点的列坐标 初始状态相当于上面矩阵左上角的*
             {
-                int num = matrix[0, y];//这一个对角线的值
-                for (int x = 1; x < rows; x++)
+                int? dia = null;//对角线每个元素相等的值
+                for (int x = 0; x < rows; x++)//遍历一条对角线中的每个元素
                 {
-                    if (matrix[x, y - x] != num)//判断对角线是否相等
+                    int realColumn = y + x;//计算真实列坐标
+                    if (realColumn < 0 || realColumn >= columns) continue;//不合法列坐标——这条对角线不完整（含有*）
+                    if (dia is null) dia = matrix[x, realColumn];//是该对角线中第一个被遍历到的元素：记录值
+                    else if (matrix[x, realColumn] != dia)//若不是第一个被遍历到的元素：与该对角线的值比较，若不相等
                     {
-                        ok = false; break;
+                        ok = false;
+                        break;
                     }
                 }
                 if (!ok) break;
