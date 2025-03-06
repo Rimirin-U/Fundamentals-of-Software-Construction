@@ -13,7 +13,7 @@ namespace HW3
             {
                 if (allNum[filter]) continue;//filter只能为素数
                 //筛
-                int notPrime = filter * 2;
+                int notPrime = filter * 2;// = filter * filter; 因为filter更少的倍数都已经被筛过了
                 while (notPrime <= n)
                 {
                     allNum[notPrime] = true;//去掉filter的倍数

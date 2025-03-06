@@ -72,7 +72,8 @@ namespace HW4
             int rows, columns;
             rows = matrix.GetLength(0);
             columns = matrix.GetLength(1);
-            /* 矩阵示例：（三行四列）
+            /* 
+             矩阵示例：（三行四列）
              * * 0 1 2 3 * *
              * * 0 1 2 3 * *
              * * 0 1 2 3 * *
