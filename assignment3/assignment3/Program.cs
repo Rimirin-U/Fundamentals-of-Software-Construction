@@ -41,8 +41,9 @@ namespace assignment3
         //构造函数
         public Rectangle(double xin, double yin)
         {
-            a = xin;
-            b = yin;
+            _a = xin;
+            _b = yin;
+            if (!IsLegal()) throw new Exception("Illegal Rectangle");
             Console.WriteLine($"Rectangle created:\t{_a}\t{_b}");
         }
         //面积计算
@@ -67,14 +68,15 @@ namespace assignment3
             set
             {
                 _a = value;
-                if (!IsLegal()) throw new Exception("Illegal Shape");
+                if (!IsLegal()) throw new Exception("Illegal Square");
             }
         }
 
         public Square(double ain)
         {
-            a = ain;
-            Console.WriteLine($"Rectangle created:\t{_a}");
+            _a = ain;
+            if (!IsLegal()) throw new Exception("Illegal Square");
+            Console.WriteLine($"Square created:\t\t{_a}");
         }
         public override double GetArea()
         {
@@ -122,8 +124,9 @@ namespace assignment3
 
         public Triangle(double x, double y, double z)
         {
-            a = x; b = y; c = z;
-            Console.WriteLine($"Rectangle created:\t{_a}\t{_b}\t{_c}");
+            _a = x; _b = y; _c = z;
+            if (!IsLegal()) throw new Exception("Illegal Triangle");
+            Console.WriteLine($"Triangle created:\t{_a}\t{_b}\t{_c}");
         }
         public override double GetArea()
         {
@@ -160,14 +163,14 @@ namespace assignment3
                         }
                     case 2:
                         {
-                            shape = new Rectangle(length[0], length[1]);
+                            shape = new Triangle(length[0], length[1], length[2]);
                             break;
                         }
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine("Creation failed: ", e.Message);
+                Console.WriteLine($"Creation failed:\t{e.Message}");
             }
             return shape;
         }
@@ -180,19 +183,28 @@ namespace assignment3
             List<Shape> shapes = new();
             Random ran = new();
             //随机创建图形
-            for (int i = 0; i < 20; i++)
+            for (uint i = 0; i < 20; i++)
             {
-                double[] length = new double[i % 3];
+                double[] length = new double[3];
                 //随机产生边长
-                for (int j = 0; j < i % 3; j++)
+                for (int j = 0; j < 3; j++)
                 {
-                    length[j] = ran.NextDouble();
+                    length[j] = Math.Round(ran.NextDouble() * 10, 2);
                 }
                 //随机产生的有可能不合法
-                if (ShapeFactory.CreateShape((uint)i % 3, length) is Shape shape)
+                Console.Write($"{i + 1}\t");
+                if (ShapeFactory.CreateShape(i % 3, length) is Shape shape)
                 {
                     shapes.Add(shape);
                 }
+            }
+            //计算面积
+            int k = 1;
+            Console.WriteLine();
+            foreach (Shape shape in shapes)
+            {
+                Console.WriteLine($"{k}\t{shape.GetType()}\t\t{Math.Round(shape.GetArea(), 4)}");
+                k++;
             }
         }
     }
