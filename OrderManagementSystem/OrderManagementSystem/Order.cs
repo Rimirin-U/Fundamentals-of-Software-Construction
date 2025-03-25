@@ -32,16 +32,15 @@ namespace OrderManagementSystem
         {
             return $"Order:\n" + orderDetail;
         }
-
         public override bool Equals(object? obj)
         {
             return obj is Order order &&
-                   EqualityComparer<OrderDetail?>.Default.Equals(orderDetail, order.orderDetail);
+                   EqualityComparer<OrderDetail>.Default.Equals(orderDetail, order.orderDetail) &&
+                   id == order.id;
         }
-
         public override int GetHashCode()
         {
-            return HashCode.Combine(orderDetail);
+            return HashCode.Combine(orderDetail, id);
         }
     }
 }

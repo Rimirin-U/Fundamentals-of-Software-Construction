@@ -23,6 +23,7 @@ namespace OrderManagementSystem
         public int amount { get; set; }
         public DateTime time { get; set; }
 
+        //Functions
         public override bool Equals(object? obj)
         {
             return obj is OrderDetail detail &&
@@ -31,14 +32,10 @@ namespace OrderManagementSystem
                    amount == detail.amount &&
                    time == detail.time;
         }
-
         public override int GetHashCode()
         {
             return HashCode.Combine(customer, goods, amount, time);
         }
-
-        //Functions
-
         public override string ToString()
         {
             return "OrderDetail:\n" +
@@ -47,7 +44,5 @@ namespace OrderManagementSystem
                 $"Amount = {amount}" +
                 $"Time = {time}";
         }
-
-       
     }
 }

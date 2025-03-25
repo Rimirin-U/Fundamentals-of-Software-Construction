@@ -18,6 +18,15 @@ namespace OrderManagementSystem
         public string kind { get; set; }
 
         //Functions
+        public override bool Equals(object? obj)
+        {
+            return obj is Goods goods &&
+                   kind == goods.kind;
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(kind);
+        }
         public override string ToString()
         {
             return $"Goods:\tKind = {kind}";

@@ -8,10 +8,14 @@ namespace OrderManagementSystem
 {
     class OrderService
     {
+        //Constructor
         public OrderService()
         {
             orders = new List<Order>();
         }
+
+        private List<Order> orders;
+
         public void AddOrder(Order order)
         {
             orders.Add(order);
@@ -21,13 +25,28 @@ namespace OrderManagementSystem
         {
             if (!orders.Remove(order)) throw new Exception("RemoveError: order not found");
         }
-        public Order SearchByID(string id)
-        {
 
+        public List<Order> SearchByID(int id)
+        {
+            var rt = from o in orders where o.id == id select o;
+            return rt.ToList<Order>();
         }
-        public List<Order> SearchByNameOfGoods(string name);
-        public List<Order> SearchByCustomer(Customer customer);
-        public List<Order> SearchByAmount(int min, int max);
+        public List<Order> SearchByNameOfGoods(Goods name)
+        {
+            var rt = from o in orders where o.orderDetail.goods == name select o;
+            return rt.ToList<Order>();
+        }
+        public List<Order> SearchByCustomer(Customer customer)
+        {
+            var rt = from o in orders where o.orderDetail.customer == customer select o;
+            return rt.ToList<Order>();
+        }
+        public List<Order> SearchByAmount(int min, int max)
+        {
+            var rt = from o in orders where o.orderDetail.amount >= min && o.orderDetail.amount <= max select o;
+            return rt.ToList<Order>();
+        }
+
         public Comparison<Order> sortByAmountOperator
         {
             get => (x, y) =>
@@ -49,6 +68,5 @@ namespace OrderManagementSystem
         {
             orders.Sort(op);
         }
-        private List<Order> orders;
     }
 }

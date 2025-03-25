@@ -18,6 +18,15 @@ namespace OrderManagementSystem
         public string name { get; set; }
 
         //Functions
+        public override bool Equals(object? obj)
+        {
+            return obj is Customer customer &&
+                   name == customer.name;
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(name);
+        }
         public override string ToString()
         {
             return $"Customer:\tName = {name}";
