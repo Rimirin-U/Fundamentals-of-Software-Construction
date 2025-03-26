@@ -8,7 +8,6 @@ namespace OrderManagementSystem
 {
     class OrderService
     {
-        //Constructor
         public OrderService()
         {
             orders = new List<Order>();
@@ -18,6 +17,7 @@ namespace OrderManagementSystem
 
         public void AddOrder(Order order)
         {
+            if (orders.Exists(od => od.Equals(order))) throw new Exception("AddOrderError: order exist");
             orders.Add(order);
             Sort(sortByIDOperator);
         }
@@ -26,10 +26,11 @@ namespace OrderManagementSystem
             if (!orders.Remove(order)) throw new Exception("RemoveError: order not found");
         }
 
-        public List<Order> SearchByID(int id)
+        public Order GetByID(int id)
         {
-            var rt = from o in orders where o.id == id select o;
-            return rt.ToList<Order>();
+            Order? rt = orders.Find((order) => order.id == id);
+            if (rt is null) throw new Exception("GetByIDError: order not found");
+            else return rt;
         }
         public List<Order> SearchByNameOfGoods(Goods name)
         {
