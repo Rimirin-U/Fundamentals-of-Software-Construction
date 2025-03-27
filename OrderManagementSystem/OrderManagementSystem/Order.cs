@@ -35,8 +35,8 @@ namespace OrderManagementSystem
         public override bool Equals(object? obj)
         {
             return obj is Order order &&
-                   EqualityComparer<OrderDetail>.Default.Equals(orderDetail, order.orderDetail) &&
-                   id == order.id;
+                   EqualityComparer<OrderDetail>.Default.Equals(orderDetail, order.orderDetail)/* &&
+                   id == order.id*/;
         }
         public override int GetHashCode()
         {

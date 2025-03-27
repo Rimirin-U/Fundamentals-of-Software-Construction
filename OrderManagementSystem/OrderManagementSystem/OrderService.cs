@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrderManagementSystem
 {
-    class OrderService
+    public class OrderService
     {
         //Constructor
         public OrderService()
@@ -14,10 +14,11 @@ namespace OrderManagementSystem
             orders = new List<Order>();
         }
 
-        private List<Order> orders;
+        public List<Order> orders { get; set; }
 
         public void AddOrder(Order order)
         {
+            if (orders.Find(order.Equals) is not null) throw new Exception("AddOrderError: order already exists");
             orders.Add(order);
             Sort(sortByIDOperator);
         }
