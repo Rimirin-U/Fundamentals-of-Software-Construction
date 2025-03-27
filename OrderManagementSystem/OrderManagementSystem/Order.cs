@@ -9,23 +9,15 @@ namespace OrderManagementSystem
     public class Order
     {
         //Constructor
-        public Order(OrderDetail orderDetail)
+        public Order(OrderDetail orderDetail, int id)
         {
             this.orderDetail = orderDetail;
-            id = GenerateID();
+            this.id = id;
         }
 
         //Properties
         public OrderDetail orderDetail { get; set; }
         public int id { get; }
-
-        //ID
-        private static int maxID = 0;
-        private static int GenerateID()
-        {
-            maxID++;
-            return maxID;
-        }
 
         //Functions
         public override string ToString()
@@ -35,8 +27,8 @@ namespace OrderManagementSystem
         public override bool Equals(object? obj)
         {
             return obj is Order order &&
-                   EqualityComparer<OrderDetail>.Default.Equals(orderDetail, order.orderDetail)/* &&
-                   id == order.id*/;
+                   EqualityComparer<OrderDetail>.Default.Equals(orderDetail, order.orderDetail) &&
+                   id == order.id;
         }
         public override int GetHashCode()
         {
