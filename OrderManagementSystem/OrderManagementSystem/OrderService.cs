@@ -42,9 +42,9 @@ namespace OrderManagementSystem
             return rt.ToList<Order>();
         }
         //orders.FirstOrDefault(...)
-        public List<Order> SearchByGoods(Goods name)
+        public List<Order> SearchByGoods(Goods goods)
         {
-            var lst = from o in orders where o.orderDetail.goods == name select o;
+            var lst = from o in orders where o.orderDetail.goods == goods select o;
             List<Order> rt = lst.ToList<Order>(); rt.Sort(sortByIDOperator);
             return rt;
         }
