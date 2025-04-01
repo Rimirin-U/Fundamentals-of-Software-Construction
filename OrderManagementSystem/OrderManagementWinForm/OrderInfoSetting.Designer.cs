@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             orderDetailInfo = new GroupBox();
             goodsInfo = new GroupBox();
@@ -37,7 +36,6 @@
             panel3 = new Panel();
             saveBotton = new Button();
             cancelBotton = new Button();
-            toolTip1 = new ToolTip(components);
             IDLabel = new Label();
             textBox1 = new TextBox();
             label1 = new Label();
@@ -65,7 +63,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Padding = new Padding(10);
-            panel1.Size = new Size(778, 944);
+            panel1.Size = new Size(738, 744);
             panel1.TabIndex = 0;
             // 
             // orderDetailInfo
@@ -77,7 +75,7 @@
             orderDetailInfo.Location = new Point(10, 106);
             orderDetailInfo.Name = "orderDetailInfo";
             orderDetailInfo.Padding = new Padding(10);
-            orderDetailInfo.Size = new Size(758, 335);
+            orderDetailInfo.Size = new Size(718, 335);
             orderDetailInfo.TabIndex = 1;
             orderDetailInfo.TabStop = false;
             orderDetailInfo.Text = "订单详情";
@@ -95,7 +93,7 @@
             goodsInfo.Location = new Point(10, 129);
             goodsInfo.Name = "goodsInfo";
             goodsInfo.Padding = new Padding(10);
-            goodsInfo.Size = new Size(738, 196);
+            goodsInfo.Size = new Size(698, 196);
             goodsInfo.TabIndex = 5;
             goodsInfo.TabStop = false;
             goodsInfo.Text = "货物信息";
@@ -109,7 +107,7 @@
             customerInfo.Location = new Point(10, 33);
             customerInfo.Name = "customerInfo";
             customerInfo.Padding = new Padding(10);
-            customerInfo.Size = new Size(738, 96);
+            customerInfo.Size = new Size(698, 96);
             customerInfo.TabIndex = 4;
             customerInfo.TabStop = false;
             customerInfo.Text = "顾客信息";
@@ -124,7 +122,7 @@
             orderInfo.Location = new Point(10, 10);
             orderInfo.Name = "orderInfo";
             orderInfo.Padding = new Padding(10);
-            orderInfo.Size = new Size(758, 96);
+            orderInfo.Size = new Size(718, 96);
             orderInfo.TabIndex = 0;
             orderInfo.TabStop = false;
             orderInfo.Text = "订单信息";
@@ -136,16 +134,16 @@
             panel3.Controls.Add(saveBotton);
             panel3.Controls.Add(cancelBotton);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 886);
+            panel3.Location = new Point(0, 686);
             panel3.Name = "panel3";
             panel3.Padding = new Padding(10);
-            panel3.Size = new Size(778, 58);
+            panel3.Size = new Size(738, 58);
             panel3.TabIndex = 1;
             // 
             // saveBotton
             // 
             saveBotton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            saveBotton.Location = new Point(656, 12);
+            saveBotton.Location = new Point(616, 12);
             saveBotton.Name = "saveBotton";
             saveBotton.Size = new Size(112, 34);
             saveBotton.TabIndex = 1;
@@ -155,7 +153,7 @@
             // cancelBotton
             // 
             cancelBotton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            cancelBotton.Location = new Point(538, 12);
+            cancelBotton.Location = new Point(498, 12);
             cancelBotton.Name = "cancelBotton";
             cancelBotton.Size = new Size(112, 34);
             cancelBotton.TabIndex = 0;
@@ -174,7 +172,8 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(444, 30);
+            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBox1.Location = new Point(404, 30);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(160, 30);
@@ -191,7 +190,8 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(434, 30);
+            textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBox2.Location = new Point(394, 30);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(160, 30);
             textBox2.TabIndex = 2;
@@ -207,7 +207,8 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(434, 30);
+            textBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBox3.Location = new Point(394, 30);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(160, 30);
             textBox3.TabIndex = 3;
@@ -223,7 +224,8 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(434, 80);
+            textBox4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBox4.Location = new Point(394, 80);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(160, 30);
             textBox4.TabIndex = 5;
@@ -239,7 +241,8 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(434, 130);
+            textBox5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBox5.Location = new Point(394, 130);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(160, 30);
             textBox5.TabIndex = 7;
@@ -248,9 +251,10 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(778, 944);
+            ClientSize = new Size(738, 744);
             Controls.Add(panel3);
             Controls.Add(panel1);
+            MinimumSize = new Size(620, 400);
             Name = "OrderInfoSetting";
             Text = "设置订单信息";
             panel1.ResumeLayout(false);
@@ -278,7 +282,6 @@
         private Panel panel3;
         private Button saveBotton;
         private Button cancelBotton;
-        private ToolTip toolTip1;
         private Label IDLabel;
         private TextBox textBox4;
         private Label label3;

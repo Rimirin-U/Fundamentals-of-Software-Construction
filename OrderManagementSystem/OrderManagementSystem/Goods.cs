@@ -17,8 +17,14 @@ namespace OrderManagementSystem
         }
 
         //Properties
-        public string kind { get; set; }
-        public double amount { get; set; }
+        public string kind
+        {
+            get; set;
+        }
+        public double amount
+        {
+            get; set;
+        }
         public double price { get; set; }
 
         //Functions
