@@ -17,6 +17,7 @@ namespace OrderManagementSystem
         //Properties
         public string name { get; set; }
 
+
         //Functions
         public override bool Equals(object? obj)
         {
