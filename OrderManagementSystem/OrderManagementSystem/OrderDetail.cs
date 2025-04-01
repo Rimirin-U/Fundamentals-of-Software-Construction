@@ -13,14 +13,13 @@ namespace OrderManagementSystem
         {
             this.customer = customer;
             this.goods = goods;
-            this.amount = amount;
             time = DateTime.Now;
         }
 
         //Properties
         public Customer customer { get; set; }
         public Goods goods { get; set; }
-        public int amount { get; set; }
+        public double money { get => goods.price * goods.amount; }
         public DateTime time { get; set; }
 
         //Functions
@@ -41,7 +40,7 @@ namespace OrderManagementSystem
             return "OrderDetail:\n" +
                 customer + "\n" +
                 goods + "\n" +
-                $"Amount = {amount}" +
+                $"Money = {money}\n" +
                 $"Time = {time}";
         }
     }

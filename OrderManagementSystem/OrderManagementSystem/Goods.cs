@@ -9,13 +9,17 @@ namespace OrderManagementSystem
     public class Goods
     {
         //Constructor
-        public Goods(string kind)
+        public Goods(string kind, double amount, double price)
         {
             this.kind = kind;
+            this.amount = amount;
+            this.price = price;
         }
 
         //Properties
         public string kind { get; set; }
+        public double amount { get; set; }
+        public double price { get; set; }
 
         //Functions
         public override bool Equals(object? obj)
@@ -29,7 +33,7 @@ namespace OrderManagementSystem
         }
         public override string ToString()
         {
-            return $"Goods:\tKind = {kind}";
+            return $"Goods:\tKind = {kind}\tAmount = {amount}\tPrice = {price}";
         }
     }
 }
