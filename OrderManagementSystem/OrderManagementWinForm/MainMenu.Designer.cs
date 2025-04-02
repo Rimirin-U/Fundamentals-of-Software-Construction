@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             createOrderBotton = new Button();
             panel1 = new Panel();
             panel4 = new Panel();
@@ -37,12 +38,17 @@
             searchInputTextBox = new TextBox();
             searchOrderBotton = new Button();
             searchSelectionComboBox = new ComboBox();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            searchResultBindingSource = new BindingSource(components);
+            infoFlowLayoutPanel = new FlowLayoutPanel();
+            panel3 = new Panel();
             textBox1 = new TextBox();
+            radioButton1 = new RadioButton();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
             panel2.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)searchResultBindingSource).BeginInit();
+            infoFlowLayoutPanel.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // createOrderBotton
@@ -144,30 +150,64 @@
             searchSelectionComboBox.Size = new Size(128, 32);
             searchSelectionComboBox.TabIndex = 0;
             // 
-            // flowLayoutPanel1
+            // searchResultBindingSource
             // 
-            flowLayoutPanel1.Controls.Add(textBox1);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(200, 64);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Padding = new Padding(10);
-            flowLayoutPanel1.Size = new Size(948, 642);
-            flowLayoutPanel1.TabIndex = 4;
+            searchResultBindingSource.AllowNew = true;
+            searchResultBindingSource.DataSource = typeof(OrderManagementSystem.Order);
+            // 
+            // infoFlowLayoutPanel
+            // 
+            infoFlowLayoutPanel.AutoScroll = true;
+            infoFlowLayoutPanel.Controls.Add(panel3);
+            infoFlowLayoutPanel.Dock = DockStyle.Fill;
+            infoFlowLayoutPanel.Location = new Point(200, 64);
+            infoFlowLayoutPanel.Name = "infoFlowLayoutPanel";
+            infoFlowLayoutPanel.Padding = new Padding(10);
+            infoFlowLayoutPanel.Size = new Size(948, 642);
+            infoFlowLayoutPanel.TabIndex = 4;
+            // 
+            // panel3
+            // 
+            panel3.BorderStyle = BorderStyle.Fixed3D;
+            panel3.Controls.Add(textBox1);
+            panel3.Controls.Add(radioButton1);
+            panel3.Location = new Point(13, 13);
+            panel3.Name = "panel3";
+            panel3.Padding = new Padding(10);
+            panel3.Size = new Size(440, 220);
+            panel3.TabIndex = 0;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(13, 13);
+            textBox1.Dock = DockStyle.Fill;
+            textBox1.Location = new Point(10, 10);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(200, 300);
-            textBox1.TabIndex = 0;
+            textBox1.ReadOnly = true;
+            textBox1.ScrollBars = ScrollBars.Horizontal;
+            textBox1.Size = new Size(416, 168);
+            textBox1.TabIndex = 1;
+            textBox1.Text = "Order:\r\nOrderDetail:\r\nCustomer:  Name = 高松灯\r\nGoods:  Kind = 石头  Amount = 10000  Price = 0.5\r\nMoney = 5000\r\nTime = 2025/04/02 22:10:56";
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoCheck = false;
+            radioButton1.AutoSize = true;
+            radioButton1.Dock = DockStyle.Bottom;
+            radioButton1.Location = new Point(10, 178);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(416, 28);
+            radioButton1.TabIndex = 0;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "选择";
+            radioButton1.UseVisualStyleBackColor = true;
             // 
             // mainMenu
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1148, 706);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(infoFlowLayoutPanel);
             Controls.Add(panel2);
             Controls.Add(panel1);
             MinimumSize = new Size(800, 400);
@@ -177,8 +217,10 @@
             panel4.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)searchResultBindingSource).EndInit();
+            infoFlowLayoutPanel.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -194,7 +236,10 @@
         private Button deleteOrderBotton;
         private Button modifyOrderBotton;
         private DataGridViewTextBoxColumn orderDetailTimeDataGridViewTextBoxColumn;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private BindingSource searchResultBindingSource;
+        private FlowLayoutPanel infoFlowLayoutPanel;
+        private Panel panel3;
         private TextBox textBox1;
+        private RadioButton radioButton1;
     }
 }
