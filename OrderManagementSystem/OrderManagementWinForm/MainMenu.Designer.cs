@@ -40,15 +40,10 @@
             searchSelectionComboBox = new ComboBox();
             searchResultBindingSource = new BindingSource(components);
             infoFlowLayoutPanel = new FlowLayoutPanel();
-            panel3 = new Panel();
-            textBox1 = new TextBox();
-            radioButton1 = new RadioButton();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)searchResultBindingSource).BeginInit();
-            infoFlowLayoutPanel.SuspendLayout();
-            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // createOrderBotton
@@ -140,11 +135,13 @@
             searchOrderBotton.TabIndex = 1;
             searchOrderBotton.Text = "查找订单";
             searchOrderBotton.UseVisualStyleBackColor = true;
+            searchOrderBotton.Click += searchOrderBotton_Click;
             // 
             // searchSelectionComboBox
             // 
             searchSelectionComboBox.Anchor = AnchorStyles.Left;
             searchSelectionComboBox.FormattingEnabled = true;
+            searchSelectionComboBox.Items.AddRange(new object[] { "按ID查找", "按顾客查找" });
             searchSelectionComboBox.Location = new Point(10, 16);
             searchSelectionComboBox.Name = "searchSelectionComboBox";
             searchSelectionComboBox.Size = new Size(128, 32);
@@ -158,49 +155,13 @@
             // infoFlowLayoutPanel
             // 
             infoFlowLayoutPanel.AutoScroll = true;
-            infoFlowLayoutPanel.Controls.Add(panel3);
+            infoFlowLayoutPanel.BorderStyle = BorderStyle.FixedSingle;
             infoFlowLayoutPanel.Dock = DockStyle.Fill;
             infoFlowLayoutPanel.Location = new Point(200, 64);
             infoFlowLayoutPanel.Name = "infoFlowLayoutPanel";
             infoFlowLayoutPanel.Padding = new Padding(10);
             infoFlowLayoutPanel.Size = new Size(948, 642);
             infoFlowLayoutPanel.TabIndex = 4;
-            // 
-            // panel3
-            // 
-            panel3.BorderStyle = BorderStyle.Fixed3D;
-            panel3.Controls.Add(textBox1);
-            panel3.Controls.Add(radioButton1);
-            panel3.Location = new Point(13, 13);
-            panel3.Name = "panel3";
-            panel3.Padding = new Padding(10);
-            panel3.Size = new Size(440, 220);
-            panel3.TabIndex = 0;
-            // 
-            // textBox1
-            // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(10, 10);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.ScrollBars = ScrollBars.Horizontal;
-            textBox1.Size = new Size(416, 168);
-            textBox1.TabIndex = 1;
-            textBox1.Text = "Order:\r\nOrderDetail:\r\nCustomer:  Name = 高松灯\r\nGoods:  Kind = 石头  Amount = 10000  Price = 0.5\r\nMoney = 5000\r\nTime = 2025/04/02 22:10:56";
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoCheck = false;
-            radioButton1.AutoSize = true;
-            radioButton1.Dock = DockStyle.Bottom;
-            radioButton1.Location = new Point(10, 178);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(416, 28);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "选择";
-            radioButton1.UseVisualStyleBackColor = true;
             // 
             // mainMenu
             // 
@@ -218,9 +179,6 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)searchResultBindingSource).EndInit();
-            infoFlowLayoutPanel.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -238,8 +196,5 @@
         private DataGridViewTextBoxColumn orderDetailTimeDataGridViewTextBoxColumn;
         private BindingSource searchResultBindingSource;
         private FlowLayoutPanel infoFlowLayoutPanel;
-        private Panel panel3;
-        private TextBox textBox1;
-        private RadioButton radioButton1;
     }
 }

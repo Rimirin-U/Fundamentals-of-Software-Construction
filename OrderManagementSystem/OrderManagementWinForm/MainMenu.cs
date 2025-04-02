@@ -28,42 +28,73 @@ namespace OrderManagementWinForm
             }
         }
 
-        private void infoFlowLayoutPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void updateInfoFlowLayoutPanel(object sender, PaintEventArgs e)
+        private void updateInfoFlowLayoutPanel()
         {
             //先清理infoFlowLayoutPanel中原有的控件
-            foreach(var widgets in orderWidgets)
+            foreach (var widget in orderWidgets)
             {
-                widgets.clear();
+                widget.clear();
             }
-            //遍历searchResult中的所有Orders，并为其创建控件
-            foreach(OrderManagementSystem.Order order in searchResult)
+            //遍历searchResult中的所有Orders，并为其创建控件并展示
+            foreach (OrderManagementSystem.Order order in searchResult)
             {
-                var widget = new OrderWidget(order, infoFlowLayoutPanel);
+                var widget = new OrderWidget(order, infoFlowLayoutPanel, radioButton_CheckedChanged);
+                widget.show();
+                orderWidgets.Add(widget);
+            }
+        }
 
+        private void radioButton_CheckedChanged(object? sender, EventArgs e)
+        {
+            RadioButton? currentRb = sender as RadioButton;
+            if (currentRb is null) throw new ArgumentNullException();
+            if (currentRb.Checked)
+            {
+                // uncheck others
+                foreach (var widget in orderWidgets)
+                {
+                    if (currentRb != widget.radioButton)
+                    {
+                        widget.radioButton.Checked = false;
+                    }
+                }
             }
+        }
+
+        private void searchOrderBotton_Click(object sender, EventArgs e)
+        {
+            switch (searchSelectionComboBox.SelectedIndex)
+            {
+                case 0:// by ID
+                    searchResult = orderService.SearchByID(int.Parse(searchInputTextBox.Text));
+                    break;
+                case 1:// by name
+                    OrderManagementSystem.Customer customer = new OrderManagementSystem.Customer(searchInputTextBox.Text);
+                    searchResult = orderService.SearchByCustomer(customer);
+                    break;
+                default:
+                    throw new Exception();
+            }
+            updateInfoFlowLayoutPanel();
         }
     }
 
     public class OrderWidget
     {
-        private Panel panel;
-        private TextBox textBox;
-        private RadioButton radioButton;
-        private FlowLayoutPanel father;
+        public Panel panel;
+        public TextBox textBox;
+        public RadioButton radioButton;
+        public FlowLayoutPanel parent;
         private static int index = 0;
 
-        public OrderWidget(OrderManagementSystem.Order order, FlowLayoutPanel father)
+        public OrderWidget(OrderManagementSystem.Order order, FlowLayoutPanel parent,
+            EventHandler? radioButton_CheckedChanged)
         {
             //create
             panel = new Panel();
             textBox = new TextBox();
             radioButton = new RadioButton();
-            this.father = father;
+            this.parent = parent;
 
             //initialize
             textBox.Dock = DockStyle.Fill;
@@ -86,6 +117,7 @@ namespace OrderManagementWinForm
             radioButton.TabStop = true;
             radioButton.Text = "选择";
             radioButton.UseVisualStyleBackColor = true;
+            radioButton.CheckedChanged += radioButton_CheckedChanged;
 
             panel.BorderStyle = BorderStyle.Fixed3D;
             panel.Controls.Add(textBox);
@@ -98,10 +130,12 @@ namespace OrderManagementWinForm
 
             index++;
         }
-        public void show() {
-            father.Controls.Add(panel);
+        public void show()
+        {
+            parent.Controls.Add(panel);
         }
-        public void clear() {
+        public void clear()
+        {
             panel.Controls.Clear();
         }
     }
