@@ -56,7 +56,7 @@ namespace OrderManagementSystem
         }
         public List<Order> SearchByAmount(int min, int max)
         {
-            var lst = from o in orders where o.orderDetail.amount >= min && o.orderDetail.amount <= max select o;
+            var lst = from o in orders where o.orderDetail.money >= min && o.orderDetail.money <= max select o;
             List<Order> rt = lst.ToList<Order>(); rt.Sort(sortByIDOperator);
             return rt;
         }
@@ -65,8 +65,8 @@ namespace OrderManagementSystem
         {
             get => (x, y) =>
         {
-            return x.orderDetail.amount > y.orderDetail.amount ? 1 :
-            x.orderDetail.amount == y.orderDetail.amount ? 0 : -1;
+            return x.orderDetail.money > y.orderDetail.money ? 1 :
+            x.orderDetail.money == y.orderDetail.money ? 0 : -1;
         };
         }
         public Comparison<Order> sortByIDOperator

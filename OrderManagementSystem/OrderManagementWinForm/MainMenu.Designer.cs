@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             createOrderBotton = new Button();
             panel1 = new Panel();
             panel4 = new Panel();
@@ -38,22 +37,12 @@
             searchInputTextBox = new TextBox();
             searchOrderBotton = new Button();
             searchSelectionComboBox = new ComboBox();
-            panel3 = new Panel();
-            dataGridView1 = new DataGridView();
-            orderBindingSource = new BindingSource(components);
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            orderDetailTimeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            orderDetailCustomerNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            textBox1 = new TextBox();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
             panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)orderBindingSource).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // createOrderBotton
@@ -66,7 +55,7 @@
             createOrderBotton.TabIndex = 1;
             createOrderBotton.Text = "创建订单";
             createOrderBotton.UseVisualStyleBackColor = true;
-            createOrderBotton.Click += button1_Click;
+            createOrderBotton.Click += createOrderBotton_Click;
             // 
             // panel1
             // 
@@ -155,109 +144,41 @@
             searchSelectionComboBox.Size = new Size(128, 32);
             searchSelectionComboBox.TabIndex = 0;
             // 
-            // panel3
+            // flowLayoutPanel1
             // 
-            panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Controls.Add(dataGridView1);
-            panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(200, 64);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(948, 642);
-            panel3.TabIndex = 4;
+            flowLayoutPanel1.Controls.Add(textBox1);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(200, 64);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Padding = new Padding(10);
+            flowLayoutPanel1.Size = new Size(948, 642);
+            flowLayoutPanel1.TabIndex = 4;
             // 
-            // dataGridView1
+            // textBox1
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, orderDetailTimeDataGridViewTextBoxColumn, orderDetailCustomerNameDataGridViewTextBoxColumn, Column1, Column2, Column3, Column4 });
-            dataGridView1.DataSource = orderBindingSource;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(946, 640);
-            dataGridView1.TabIndex = 0;
-            // 
-            // orderBindingSource
-            // 
-            orderBindingSource.DataSource = typeof(OrderManagementSystem.Order);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            idDataGridViewTextBoxColumn.HeaderText = "ID";
-            idDataGridViewTextBoxColumn.MinimumWidth = 8;
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.ReadOnly = true;
-            idDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // orderDetailTimeDataGridViewTextBoxColumn
-            // 
-            orderDetailTimeDataGridViewTextBoxColumn.DataPropertyName = "orderDetail.time";
-            orderDetailTimeDataGridViewTextBoxColumn.HeaderText = "时间";
-            orderDetailTimeDataGridViewTextBoxColumn.MinimumWidth = 8;
-            orderDetailTimeDataGridViewTextBoxColumn.Name = "orderDetailTimeDataGridViewTextBoxColumn";
-            orderDetailTimeDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // orderDetailCustomerNameDataGridViewTextBoxColumn
-            // 
-            orderDetailCustomerNameDataGridViewTextBoxColumn.DataPropertyName = "orderDetail.customer.name";
-            orderDetailCustomerNameDataGridViewTextBoxColumn.HeaderText = "顾客姓名";
-            orderDetailCustomerNameDataGridViewTextBoxColumn.MinimumWidth = 8;
-            orderDetailCustomerNameDataGridViewTextBoxColumn.Name = "orderDetailCustomerNameDataGridViewTextBoxColumn";
-            orderDetailCustomerNameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // Column1
-            // 
-            Column1.DataPropertyName = "orderDetail.goods.kind";
-            Column1.HeaderText = "货物类型";
-            Column1.MinimumWidth = 8;
-            Column1.Name = "Column1";
-            Column1.Width = 150;
-            // 
-            // Column2
-            // 
-            Column2.DataPropertyName = "orderDetail.goods.amount";
-            Column2.HeaderText = "货物数量";
-            Column2.MinimumWidth = 8;
-            Column2.Name = "Column2";
-            Column2.Width = 150;
-            // 
-            // Column3
-            // 
-            Column3.DataPropertyName = "orderDetail.goods.price";
-            Column3.HeaderText = "货物单价";
-            Column3.MinimumWidth = 8;
-            Column3.Name = "Column3";
-            Column3.Width = 150;
-            // 
-            // Column4
-            // 
-            Column4.DataPropertyName = "orderDetail.money";
-            Column4.HeaderText = "总价";
-            Column4.MinimumWidth = 8;
-            Column4.Name = "Column4";
-            Column4.Width = 150;
+            textBox1.Location = new Point(13, 13);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(200, 300);
+            textBox1.TabIndex = 0;
             // 
             // mainMenu
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1148, 706);
-            Controls.Add(panel3);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(panel2);
             Controls.Add(panel1);
             MinimumSize = new Size(800, 400);
             Name = "mainMenu";
             Text = "OrderManagementSystem";
-            Load += mainMenu_Load;
             panel1.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)orderBindingSource).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -269,18 +190,11 @@
         private Button searchOrderBotton;
         private ComboBox searchSelectionComboBox;
         private TextBox searchInputTextBox;
-        private Panel panel3;
         private Panel panel4;
         private Button deleteOrderBotton;
         private Button modifyOrderBotton;
-        private DataGridView dataGridView1;
-        private BindingSource orderBindingSource;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn orderDetailTimeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn orderDetailCustomerNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private TextBox textBox1;
     }
 }

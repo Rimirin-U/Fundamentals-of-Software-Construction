@@ -9,7 +9,7 @@ namespace OrderManagementSystem
     public class OrderDetail
     {
         //Constructor
-        public OrderDetail(Customer customer, Goods goods,int amount)
+        public OrderDetail(Customer customer, Goods goods)
         {
             this.customer = customer;
             this.goods = goods;
@@ -28,12 +28,11 @@ namespace OrderManagementSystem
             return obj is OrderDetail detail &&
                    EqualityComparer<Customer>.Default.Equals(customer, detail.customer) &&
                    EqualityComparer<Goods>.Default.Equals(goods, detail.goods) &&
-                   amount == detail.amount &&
                    time == detail.time;
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(customer, goods, amount, time);
+            return HashCode.Combine(customer, goods, money, time);
         }
         public override string ToString()
         {

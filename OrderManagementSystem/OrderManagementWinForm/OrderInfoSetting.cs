@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderManagementSystem;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,49 +13,36 @@ namespace OrderManagementWinForm
 {
     public partial class OrderInfoSetting : Form
     {
-        public OrderInfoSetting()
+        public OrderDetail theOrderDetail;
+
+        public OrderInfoSetting(Order order)
         {
+            theOrderDetail = order.orderDetail;
+            idTextBox.Text = order.id.ToString();
             InitializeComponent();
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        public OrderInfoSetting()
         {
-
+            theOrderDetail = new OrderDetail(new Customer(""),
+                        new Goods("", 0, 0));
+            InitializeComponent();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void saveBotton_Click(object sender, EventArgs e)
         {
-
+            theOrderDetail.customer.name = nameTextBox.Text;
+            theOrderDetail.goods.kind = kindTextBox.Text;
+            theOrderDetail.goods.amount = double.Parse(amountTextBox.Text);
+            theOrderDetail.goods.price = double.Parse(priceTextBox.Text);
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
-        private void groupBox3_Enter(object sender, EventArgs e)
+        private void cancelBotton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void groupBox4_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }
