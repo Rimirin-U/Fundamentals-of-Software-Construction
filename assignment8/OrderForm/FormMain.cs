@@ -30,8 +30,8 @@ namespace OrderForm {
             order.AddDetail(new OrderDetail(1, new Product("1", "apple", 100.0), 10));
             order.AddDetail(new OrderDetail(2, new Product("2", "egg", 50.0), 61));
             orderService.AddOrder(order);
-            Order order2 = new Order(2, new Customer("2", "zhang"), new List<OrderDetail>());
-            order2.AddDetail(new OrderDetail(1, new Product("2", "egg", 200.0), 10));
+            Order order2 = new Order(2, new Customer("1", "zhang"), new List<OrderDetail>());
+            order2.AddDetail(new OrderDetail(3, new Product("2", "egg", 200.0), 10));
             orderService.AddOrder(order2);
         }
 

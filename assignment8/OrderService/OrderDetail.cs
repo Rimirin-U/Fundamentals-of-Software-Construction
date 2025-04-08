@@ -10,7 +10,7 @@ namespace OrderApp {
    **/
   public class OrderDetail {
 
-    public int Index { get; set; } //序号
+    public int ID { get; set; } //序号
 
     public Product ProductItem { get; set; }
 
@@ -24,7 +24,7 @@ namespace OrderApp {
     public OrderDetail() { }
 
     public OrderDetail(int index, Product goods, int quantity) {
-      this.Index = index;
+      this.ID = index;
       this.ProductItem = goods;
       this.Quantity = quantity;
     }
@@ -34,7 +34,7 @@ namespace OrderApp {
     }
 
     public override string ToString() {
-      return $"[No.:{Index},product:{ProductName},quantity:{Quantity},totalPrice:{TotalPrice}]";
+      return $"[No.:{ID},product:{ProductName},quantity:{Quantity},totalPrice:{TotalPrice}]";
     }
 
     public override bool Equals(object obj) {
@@ -45,7 +45,7 @@ namespace OrderApp {
 
     public override int GetHashCode() {
       var hashCode = -2127770830;
-      hashCode = hashCode * -1521134295 + Index.GetHashCode();
+      hashCode = hashCode * -1521134295 + ID.GetHashCode();
       hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ProductName);
       hashCode = hashCode * -1521134295 + Quantity.GetHashCode();
       return hashCode;

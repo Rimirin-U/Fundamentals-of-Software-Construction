@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrderApp {
   public class Product {
-    public string ID { get; set; }
+    public string kindID { get; set; }
     public string Name { get; set; }
     public double Price { get; set; }
 
@@ -14,7 +14,7 @@ namespace OrderApp {
     }
 
     public Product(string iD, string name, double price) {
-      ID = iD;
+      kindID = iD;
       Name = name;
       Price = price;
     }
@@ -22,13 +22,13 @@ namespace OrderApp {
     public override bool Equals(object obj) {
       var product = obj as Product;
       return product != null &&
-             ID == product.ID &&
+             kindID == product.kindID &&
              Name == product.Name;
     }
 
     public override int GetHashCode() {
       var hashCode = 1479869798;
-      hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ID);
+      hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(kindID);
       hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
       return hashCode;
     }

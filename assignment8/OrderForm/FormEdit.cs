@@ -40,9 +40,9 @@ namespace OrderForm {
                 if (formDetailEdit.ShowDialog() == DialogResult.OK) {
                     int index = 0;
                     if (CurrentOrder.Details.Count != 0) {
-                        index = CurrentOrder.Details.Max(i => i.Index) + 1;
+                        index = CurrentOrder.Details.Max(i => i.ID) + 1;
                     }
-                    formDetailEdit.Detail.Index = index;
+                    formDetailEdit.Detail.ID = index;
                     CurrentOrder.AddDetail(formDetailEdit.Detail);
                     bdsDetails.ResetBindings(false);
                 }
