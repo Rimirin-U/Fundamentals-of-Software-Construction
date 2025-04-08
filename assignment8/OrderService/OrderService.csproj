@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
+    <Compile Include="OrderDbContext.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderDetail.cs" />
