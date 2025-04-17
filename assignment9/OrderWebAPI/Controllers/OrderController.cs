@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using OrderApp;
+using System.Collections.Generic;
 
 namespace OrderWebAPI.Controllers
 {
@@ -15,7 +16,7 @@ namespace OrderWebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Order>> GetOrders(string productName, string customerName, float? amount)
+        public ActionResult<List<Order>> GetOrders(string? productName, string? customerName, float? amount)
         {
             IQueryable<Order> lst = orderDbContext.Orders;
             if (productName != null)
@@ -30,7 +31,12 @@ namespace OrderWebAPI.Controllers
             {
                 lst = lst.Where(order => order.TotalPrice >= amount);
             }
-            return lst.OrderByDescending(o => o.TotalPrice).ToList();
+            return lst/*.OrderByDescending(o => o.TotalPrice)*/.ToList();
+            //System.InvalidOperationException:¡°The LINQ expression 'DbSet<Order>()
+            //.OrderByDescending(o => o.TotalPrice)' could not be translated. Additional information:
+            //Translation of member 'TotalPrice' on entity type 'Order' failed. This commonly occurs when the specified member is unmapped.
+            //Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.¡±
+
         }
 
         [HttpGet("{id}")]

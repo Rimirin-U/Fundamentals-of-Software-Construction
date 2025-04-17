@@ -8,6 +8,11 @@ namespace OrderWebAPI
     {
         public static void Main(string[] args)
         {
+            //var builder = WebApplication.CreateBuilder(args);
+            //builder.Services.AddDbContext<OrderDbContext>(options =>
+            //    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -17,11 +22,12 @@ namespace OrderWebAPI
             // **ADDED**
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            //builder.Services.AddDbContext<OrderDbContext>(opt => opt.UseMySql(
-            //    "Server=localhost;Database=orderDb;User=root;password=cr3502427;"));
-            builder.Configuration.AddJsonFile("appsettings.json");
-            var connectionString = builder.Configuration.GetConnectionString("OrderDataBase");
-            //
+
+            var connectionString = "Server=localhost;Database=OrderDataBase;User=root;password=cr3502427;";
+            var serverVersion = ServerVersion.AutoDetect(connectionString);
+
+            builder.Services.AddDbContext<OrderDbContext>(opt =>
+                opt.UseMySql(connectionString, serverVersion));
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
