@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+//using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,15 @@ namespace OrderApp
 {
     public class OrderDbContext : DbContext
     {
-        public OrderDbContext() : base("OrderDataBase")
+        //public OrderDbContext() : base("OrderDataBase")
+        //{
+        //    Database.SetInitializer(new DropCreateDatabaseIfModelChanges<OrderDbContext>());
+        //}
+
+        public OrderDbContext(DbContextOptions<OrderDbContext> options)
+            : base(options)
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<OrderDbContext>());
+            this.Database.EnsureCreated();
         }
 
         public DbSet<Order> Orders { get; set; }
